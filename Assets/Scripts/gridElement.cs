@@ -1,16 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class gridElement : MonoBehaviour {
+public class coord
+{
+	public int x,y,z;
 
-	// Use this for initialization
-	void Start () {
-		
+	public coord(int setX, int setY, int setZ)
+	{
+		x = setX;
+		y = setY;
+		z = setZ;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+}
+
+
+public class gridElement : MonoBehaviour 
+{
+	private coord coord;
+	private Collider col;
+	private Renderer rend;
+
+	public void Initialize(int setX, int setY, int setZ)
+	{
+		coord = new coord(setX, setY, setZ);
+		this.name = "GE_" + this.coord.x + "_" + this.coord.y + "_" + this.coord.z;
+		this.col = this.GetComponent<Collider>();
+		this.rend = this.GetComponent<Renderer>();
 	}
+
+	public coord GetCoord()
+	{
+		return coord;
+	}
+
+	public void SetEnable()
+	{
+		this.col.enabled = true;
+		this.rend.enabled = true;
+	}
+
+	public void SetDisable()
+	{		
+		this.col.enabled = false;
+		this.rend.enabled = false;
+	}
+
 }
