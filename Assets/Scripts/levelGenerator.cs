@@ -46,6 +46,11 @@ public class levelGenerator : MonoBehaviour {
 				}
 			}
 		}
+
+		foreach(cornerElement corner in cornerElements)
+		{
+			corner.SetNearGridElements();
+		}
 	}
 	
 }
