@@ -18,6 +18,7 @@ public class gridElement : MonoBehaviour
 	private coord coord;
 	private Collider col;
 	private Renderer rend;
+	private bool isEnabled;
 	public cornerElement[] corners = new cornerElement[8];
 
 	public void Initialize(int setX, int setY, int setZ)
@@ -58,14 +59,29 @@ public class gridElement : MonoBehaviour
 
 	public void SetEnable()
 	{
+		this.isEnabled = true;
 		this.col.enabled = true;
 		this.rend.enabled = true;
+		foreach(cornerElement ce in corners)
+		{
+			ce.SetCornerElement();
+		}
 	}
 
 	public void SetDisable()
 	{		
+		this.isEnabled = false;
 		this.col.enabled = false;
 		this.rend.enabled = false;
+		foreach(cornerElement ce in corners)
+		{
+			ce.SetCornerElement();
+		}
+	}
+
+	public bool GetEnabled()
+	{
+		return isEnabled;
 	}
 
 }

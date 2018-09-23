@@ -51,6 +51,11 @@ public class levelGenerator : MonoBehaviour {
 		{
 			corner.SetNearGridElements();
 		}
+
+		foreach(gridElement gridElement in gridElements)
+		{
+			gridElement.SetEnable();
+		}
 	}
 	
 }

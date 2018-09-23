@@ -4,7 +4,7 @@ public class cornerElement : MonoBehaviour
 {
 	private coord coord;
 	public gridElement[] nearGridElements = new gridElement[8];
-
+	public int bitMaskValue;
 	public void Initialize(int setX, int setY, int setZ)
 	{
 		coord = new coord(setX, setY, setZ);
@@ -14,6 +14,11 @@ public class cornerElement : MonoBehaviour
 	public void SetPosition(float setX, float setY, float setZ)
 	{
 		this.transform.position = new Vector3(setX,setY,setZ);
+	}
+
+	public void SetCornerElement()
+	{
+		bitMaskValue = bitMask.GetBitMask(nearGridElements);
 	}
 
 	public void SetNearGridElements()
