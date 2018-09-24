@@ -12,10 +12,16 @@ public class levelGenerator : MonoBehaviour {
 	public gridElement[] gridElements;
 	public cornerElement[] cornerElements;
 
+	private float floorHeight = 0.25f, basementHeight;
+
 	// Use this for initialization
 	void Start () 
 	{
 		instance = this;
+
+		basementHeight = 1.5f - floorHeight / 2;
+		float elementHeight;
+
 
 		gridElements = new gridElement[width * width * height];
 		cornerElements = new cornerElement[(width+1)  * (width+1) * (height+1)];
@@ -36,12 +42,30 @@ public class levelGenerator : MonoBehaviour {
 
 		for(int y = 0; y < height; y++)
 		{
+			float yPos = y;
+			if(y == 0)
+			{
+				elementHeight = floorHeight;
+			}
+			else if(y == 1)
+			{
+				elementHeight = basementHeight;
+				yPos = floorHeight / 2 + basementHeight / 2;
+			}
+			else
+			{
+				elementHeight = 1;
+			}
+
+
+
+
 			for(int x = 0; x < width; x++)
 			{
 				for(int z = 0; z < width; z++)
 				{
-					gridElement gridElementInstance = Instantiate(gridElement, new Vector3(x,y,z), Quaternion.identity, this.transform);
-					gridElementInstance.Initialize(x,y,z);
+					gridElement gridElementInstance = Instantiate(gridElement, new Vector3(x,yPos,z), Quaternion.identity, this.transform);
+					gridElementInstance.Initialize(x,y,z, elementHeight);
 					gridElements[x+width*(z+width*y)] = gridElementInstance;
 				}
 			}
