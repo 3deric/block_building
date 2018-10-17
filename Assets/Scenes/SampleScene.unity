@@ -571,8 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c598d234b3590b049b70ffcf9da35010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
+  width: 4
+  height: 7
   gridElement: {fileID: 114564041913286952, guid: c4023163223652648b0e9087337fd298,
     type: 2}
   cornerElement: {fileID: 114311442947414374, guid: 2375ddcb50f453f44928d5e68c86c1b5,
@@ -669,6 +669,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 26.396002, y: -30.523, z: 0}
+--- !u!1 &730869115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 730869117}
+  - component: {fileID: 730869116}
+  m_Layer: 0
+  m_Name: cornerMeshes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &730869116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 730869115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e0c008b0e9d5a469a31579519cc0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 100602, guid: 88d99f3263dff844db6c72a5e06f54fb, type: 3}
+--- !u!4 &730869117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 730869115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.533194, y: -7.6167397, z: -11.808086}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &787764242
 GameObject:
   m_ObjectHideFlags: 0

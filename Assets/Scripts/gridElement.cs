@@ -64,7 +64,7 @@ public class gridElement : MonoBehaviour
 	{
 		this.isEnabled = true;
 		this.col.enabled = true;
-		this.rend.enabled = true;
+		// this.rend.enabled = true;
 		foreach(cornerElement ce in corners)
 		{
 			ce.SetCornerElement();
@@ -75,7 +75,7 @@ public class gridElement : MonoBehaviour
 	{		
 		this.isEnabled = false;
 		this.col.enabled = false;
-		this.rend.enabled = false;
+		// this.rend.enabled = false;
 		foreach(cornerElement ce in corners)
 		{
 			ce.SetCornerElement();
