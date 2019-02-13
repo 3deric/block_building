@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class levelGenerator : MonoBehaviour {
@@ -56,10 +55,6 @@ public class levelGenerator : MonoBehaviour {
 			{
 				elementHeight = 1;
 			}
-
-
-
-
 			for(int x = 0; x < width; x++)
 			{
 				for(int z = 0; z < width; z++)
@@ -76,9 +71,23 @@ public class levelGenerator : MonoBehaviour {
 			corner.SetNearGridElements();
 		}
 
+		SetRandomize();
+	}
+
+	public void SetRandomize()
+	{
 		foreach(gridElement gridElement in gridElements)
 		{
-			gridElement.SetEnable();
+			//randomizing all grid elements above zero
+			if(Random.value < 0.5f && gridElement.GetCoord().y != 0)
+			{
+				gridElement.SetDisable();
+			}
+			else
+			{
+				gridElement.SetEnable();
+			}
+			
 		}
 	}
 	

@@ -13,7 +13,7 @@ public class cursorMovement : MonoBehaviour {
 	void Start () 
 	{
 		rectTransform = this.GetComponent<RectTransform>();
-		this.rectTransform.sizeDelta = new Vector2(0,0);
+		this.transform.localScale = new Vector3(0,0,0);
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class cursorMovement : MonoBehaviour {
 		{
 			this.transform.position = hit.collider.transform.position;
 			lastHit = hit.collider.gameObject.GetComponent<gridElement>();
-
+			this.transform.localScale = new Vector3(1,1,1);
 			this.rectTransform.sizeDelta = new Vector2(1.0f, lastHit.GetElementHeight());
 
 			if(Input.GetMouseButtonDown(1))
@@ -36,6 +36,7 @@ public class cursorMovement : MonoBehaviour {
 
 	public void SetCurserButton(int input)
 	{
+		this.transform.localScale = new Vector3(0,0,0);
 		coord coord = lastHit.GetCoord();
 		int width = levelGenerator.instance.width;
 		int height = levelGenerator.instance.height;

@@ -66,7 +66,7 @@ public static class bitMask
 
 
 
-		Debug.Log(bitMask);
+		//Debug.Log(bitMask);
 
 
 
