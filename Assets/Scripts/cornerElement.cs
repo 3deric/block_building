@@ -6,13 +6,17 @@ public class cornerElement : MonoBehaviour
 	public gridElement[] nearGridElements = new gridElement[8];
 	public int bitMaskValue;
 	private MeshFilter mesh;
-
+	private Renderer rend;
+	private bool animating;
+	private float startTime;
+	private float speed = 2f;
 
 	public void Initialize(int setX, int setY, int setZ)
 	{
 		coord = new coord(setX, setY, setZ);
 		this.name = "CE_" + coord.x +"_" + coord.y +"_" + coord.z;
 		mesh = this.GetComponent<MeshFilter>();
+		rend = this.GetComponent<Renderer>();
 	}
 
 	public void SetPosition(float setX, float setY, float setZ)
@@ -21,9 +25,32 @@ public class cornerElement : MonoBehaviour
 	}
 
 	public void SetCornerElement()
-	{
+	{	
 		bitMaskValue = bitMask.GetBitMask(nearGridElements);
 		mesh.mesh = cornerMeshes.instance.GetCornerMesh(bitMaskValue, coord.y);
+		animating = true;
+		startTime = 0f;
+	}
+
+	void Update()
+	{
+		if(!animating)
+		{
+			//only execute the update loop if animating is true
+			return;
+		}
+
+		if((startTime < 1f / speed ))
+		{
+			startTime+=Time.deltaTime;
+			rend.material.SetFloat("_Dissolve", 1-(startTime * speed));
+		}
+		else
+		{
+			//set dissolve amount to zero
+			//because of rounding errors this needs to be done manually
+			rend.material.SetFloat("_Dissolve", 0);
+		}
 	}
 
 	public void SetNearGridElements()
