@@ -50,6 +50,7 @@ public class cornerElement : MonoBehaviour
 			//set dissolve amount to zero
 			//because of rounding errors this needs to be done manually
 			rend.material.SetFloat("_Dissolve", 0);
+			animating = false;
 		}
 	}
 
