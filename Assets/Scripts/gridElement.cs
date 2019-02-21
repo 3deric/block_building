@@ -69,6 +69,7 @@ public class gridElement : MonoBehaviour
 		{
 			ce.SetCornerElement();
 		}
+		interactionSound.instance.SetAudioPlay(coord.y);
 	}
 
 	public void SetDisable()
@@ -80,6 +81,7 @@ public class gridElement : MonoBehaviour
 		{
 			ce.SetCornerElement();
 		}
+		interactionSound.instance.SetAudioPlay(coord.y);
 	}
 
 	public bool GetEnabled()

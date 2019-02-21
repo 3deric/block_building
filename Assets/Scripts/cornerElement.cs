@@ -8,8 +8,10 @@ public class cornerElement : MonoBehaviour
 	private MeshFilter mesh;
 	private Renderer rend;
 	private bool animating;
+	private bool reverse;
 	private float startTime;
 	private float speed = 2f;
+
 
 	public void Initialize(int setX, int setY, int setZ)
 	{
@@ -26,10 +28,24 @@ public class cornerElement : MonoBehaviour
 
 	public void SetCornerElement()
 	{	
-		bitMaskValue = bitMask.GetBitMask(nearGridElements);
-		mesh.mesh = cornerMeshes.instance.GetCornerMesh(bitMaskValue, coord.y);
+		int nextBitMaskValue = bitMask.GetBitMask(nearGridElements);
+		if((nextBitMaskValue == 0) && (bitMaskValue != 0))
+		{
+			reverse = true;
+			bitMaskValue = nextBitMaskValue;
+			//fade current mesh out
+			//mesh gets set after animation is finished
+		}
+		else
+		{
+			reverse = false;
+			bitMaskValue = nextBitMaskValue;
+			//set mesh to the new bitmask
+			//fade mesh in
+			mesh.mesh = cornerMeshes.instance.GetCornerMesh(bitMaskValue, coord.y);
+		}
 		animating = true;
-		startTime = 0f;
+		startTime = 0f;	
 	}
 
 	void Update()
@@ -39,18 +55,30 @@ public class cornerElement : MonoBehaviour
 			//only execute the update loop if animating is true
 			return;
 		}
-
 		if((startTime < 1f / speed ))
 		{
 			startTime+=Time.deltaTime;
-			rend.material.SetFloat("_Dissolve", 1-(startTime * speed));
+			if(reverse)
+			{
+				rend.material.SetFloat("_Dissolve", (startTime * speed));
+			}
+			else
+			{
+				rend.material.SetFloat("_Dissolve", 1-(startTime * speed));
+			}	
 		}
 		else
 		{
 			//set dissolve amount to zero
 			//because of rounding errors this needs to be done manually
 			rend.material.SetFloat("_Dissolve", 0);
+			if(reverse)
+			{
+				//setting mesh after animation has finished
+				mesh.mesh = cornerMeshes.instance.GetCornerMesh(bitMaskValue, coord.y);
+			}	
 			animating = false;
+			reverse = false;
 		}
 	}
 
